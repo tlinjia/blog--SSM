@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.blog.dao.UtilsDao">
+
+    <select id="recommendArticle" resultType="Article">
+        SELECT *
+        FROM article
+        INNER JOIN comment
+        ON  article_id =fk_article_id
+        AND article_state = 1
+        GROUP BY fk_article_id
+        LIMIT #{limit}
+    </select>
+
+    <select id="getNewestArticle" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_state = 1
+        ORDER BY article_dateline DESC
+        limit #{limit}
+    </select>
+</mapper>

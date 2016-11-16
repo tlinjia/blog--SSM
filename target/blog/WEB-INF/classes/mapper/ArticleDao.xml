@@ -1,0 +1,53 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lin.blog.dao.ArticleDao">
+    <!-- 为dao接口方法提供sql语句配置 -->
+    <insert id="addArticle">
+        INSERT INTO article(article_title,article_content)
+        VALUES (#{title},#{content})
+    </insert>
+
+    <insert id="addAndShowArticle">
+        INSERT INTO article(article_title,article_content,article_state)
+        VALUE (#{title},#{content},1)
+    </insert>
+
+    <update id="publishArticle">
+        UPDATE article
+        SET article_state = 1
+        WHERE article_id = #{articleId}
+    </update>
+
+    <update id="recallArticle">
+        UPDATE article
+        SET article_state = 0
+        WHERE article_id = #{articleId}
+    </update>
+
+    <update id="modifyArticle">
+        UPDATE article
+        SET article_title = #{title},
+            article_content = #{content},
+            article_modify_time = #{nowTime}
+        WHERE article_id = #{articleId}
+    </update>
+
+    <delete id="deleteArticle">
+        DELETE FROM article
+        WHERE article_id = #{artcileId}
+    </delete>
+
+    <select id="queryById" resultType="Article">
+        SELECT *
+        FROM article
+        WHERE article_id = #{articleId}
+    </select>
+
+    <select id="queryAll" resultType="Article">
+        SELECT *
+        FROM article
+        ORDER BY article_dateline DESC
+        limit #{offset},#{limit}
+    </select>
+</mapper>
