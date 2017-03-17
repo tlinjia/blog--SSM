@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -27,9 +28,10 @@ public class ArticleServiceImpl implements ArticleService {
 
     public List<Article> showArticleList(int page){
         List<Article> list = articleDao.queryAll(8 * (page - 1), 8);
-        for (Article article : list){
-            if (article.getArticleState() == 0){
-                list.remove(article);
+        Iterator<Article> iterator = list.iterator();
+        while (iterator.hasNext()){
+            if (iterator.next().getArticleState() == 0){
+                iterator.remove();
             }
         }
         return list;

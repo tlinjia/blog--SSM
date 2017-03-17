@@ -24,7 +24,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/manage/list">Project name</a>
+            <a class="navbar-brand" href="/manage/list">LiN</a>
         </div>
     </div>
 </nav>

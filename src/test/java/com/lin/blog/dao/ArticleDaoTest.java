@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
 public class ArticleDaoTest {
     //注入Dao实现类依赖
     @Resource
-    private ArticleDao articleDao;
+    private ArticleDao articleDao ;
     @Resource
     private UtilsDao utilsDao;
 
